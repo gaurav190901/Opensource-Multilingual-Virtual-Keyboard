@@ -64,3 +64,28 @@ indian-virtual-keyboard/
 
 ```bash
 npm install indian-virtual-keyboard
+```
+### CDN
+<script src="https://unpkg.com/indian-virtual-keyboard"></script>
+
+### Usage
+## Using ES Modules
+import VirtualKeyboard from "indian-virtual-keyboard";
+
+VirtualKeyboard.attach("input, textarea", {
+  language: "EN_IN",
+  draggable: true,
+  hardwareSync: true
+});
+
+## Using script tags
+<link rel="stylesheet" href="keyboard.css">
+<script src="keyboard.js"></script>
+
+<input id="input" placeholder="Click me" />
+
+<script>
+VirtualKeyboard.attach("#input", {
+  language: "HI_IN"
+});
+</script>
