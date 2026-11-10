@@ -15,6 +15,7 @@ An on-screen keyboard for typing in Indian languages in the browser. Pick a lang
 - ⇧ **Shift layer** with standalone vowels, common conjuncts, native and Western digits, and punctuation
 - ◌ **Readable vowel-sign keys**: combining marks are drawn on a dotted circle (◌ा)
 - ⌨ **Works alongside a physical keyboard**: text you type or paste stays in sync with the on-screen keyboard
+- 🖱 **Draggable**: move the keyboard anywhere by its header bar (works with touch too); double-click the header to dock it back at the bottom
 - 📍 **Inserts at the cursor** and keeps focus in the text field while you tap keys
 - 💾 **Remembers your language** between visits
 - 📱 **Responsive** layout for phones and tablets
@@ -37,6 +38,7 @@ That's all. The keyboard library and fonts load from CDNs, so you need an intern
 
 - Choose a language from the **Language** menu.
 - Click ⌨️ to open the keyboard. Click it again, press ✕ or press **Escape** to close it.
+- Drag the bar at the top of the keyboard (⠿) to move it. Double-click the bar to dock it at the bottom again.
 - Press **⇧** to switch between the letters layer and the vowels/digits/punctuation layer.
 
 ---
@@ -86,7 +88,6 @@ Vowel signs get their dotted-circle label automatically.
 - [ ] More languages (Gujarati, Kannada, Malayalam, Punjabi, Odia)
 - [ ] English layout
 - [ ] Physical-keyboard layout mapping (InScript)
-- [ ] Draggable keyboard panel
 - [ ] Dark theme
 - [ ] Offline use (bundle the library and fonts locally)
 

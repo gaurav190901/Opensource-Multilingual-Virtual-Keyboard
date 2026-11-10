@@ -170,6 +170,7 @@ function toggleShift() {
   } else {
     keyboard.removeButtonTheme("{shift}", "shift-active");
   }
+  updateBodyPadding(); // layers differ in height
 }
 
 /* Keep the virtual keyboard in sync with physical typing / pasting */
@@ -203,11 +204,77 @@ langSelect.addEventListener("change", e => setLanguage(e.target.value));
    Show / Hide Keyboard
 ========================= */
 
+/* While docked at the bottom, pad the page so nothing hides behind the
+   keyboard. Once the user drags it somewhere else, no padding is needed. */
 function updateBodyPadding() {
-  document.body.style.paddingBottom = kbContainer.classList.contains("open")
+  const docked = kbContainer.classList.contains("open") && !kbMoved;
+  document.body.style.paddingBottom = docked
     ? kbContainer.offsetHeight + 20 + "px"
     : "";
+  if (kbMoved) clampToViewport();
 }
+
+/* =========================
+   Dragging (by the header bar)
+========================= */
+
+const kbHandle = document.getElementById("kbHandle");
+let kbMoved = false;
+let drag = null;
+
+function moveTo(x, y) {
+  const maxX = Math.max(0, window.innerWidth - kbContainer.offsetWidth);
+  const maxY = Math.max(0, window.innerHeight - kbContainer.offsetHeight);
+  kbContainer.style.left = Math.min(Math.max(0, x), maxX) + "px";
+  kbContainer.style.top = Math.min(Math.max(0, y), maxY) + "px";
+}
+
+function clampToViewport() {
+  if (!kbContainer.classList.contains("open")) return;
+  moveTo(kbContainer.offsetLeft, kbContainer.offsetTop);
+}
+
+kbHandle.addEventListener("pointerdown", e => {
+  if (e.button !== 0 || e.target.closest("button")) return;
+  const rect = kbContainer.getBoundingClientRect();
+  // Switch from the centred/bottom-docked CSS position to explicit coordinates
+  kbContainer.style.transform = "none";
+  kbContainer.style.bottom = "auto";
+  kbContainer.style.left = rect.left + "px";
+  kbContainer.style.top = rect.top + "px";
+  drag = { dx: e.clientX - rect.left, dy: e.clientY - rect.top };
+  kbHandle.setPointerCapture(e.pointerId);
+  kbContainer.classList.add("dragging");
+  e.preventDefault();
+});
+
+kbHandle.addEventListener("pointermove", e => {
+  if (!drag) return;
+  if (!kbMoved) {
+    kbMoved = true;
+    updateBodyPadding();
+  }
+  moveTo(e.clientX - drag.dx, e.clientY - drag.dy);
+});
+
+function endDrag(e) {
+  if (!drag) return;
+  drag = null;
+  kbContainer.classList.remove("dragging");
+  if (kbHandle.hasPointerCapture(e.pointerId)) {
+    kbHandle.releasePointerCapture(e.pointerId);
+  }
+}
+kbHandle.addEventListener("pointerup", endDrag);
+kbHandle.addEventListener("pointercancel", endDrag);
+
+/* Double-click the header to dock the keyboard back at the bottom */
+kbHandle.addEventListener("dblclick", e => {
+  if (e.target.closest("button")) return;
+  kbMoved = false;
+  kbContainer.style.cssText = "";
+  updateBodyPadding();
+});
 
 function setKeyboardOpen(open) {
   kbContainer.classList.toggle("open", open);
