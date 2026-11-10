@@ -1,193 +1,110 @@
-# 🌐 Indian Virtual Keyboard
+# 🌐 Multilingual Virtual Keyboard
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![JavaScript](https://img.shields.io/badge/Vanilla-JS-yellow)
-![Status](https://img.shields.io/badge/status-Active-success)
 ![PRs](https://img.shields.io/badge/PRs-Welcome-brightgreen)
 
-A lightweight, multi-language Indian Virtual Keyboard built using Vanilla JavaScript.
-
-Designed to support multiple Indian language layouts with hardware keyboard synchronization, smooth dragging, and modular architecture.
-
----
-
-## 🎥 Demo
-
-Place your demo GIF inside:
-
-assets/
-└── demo.gif
-
-![Virtual Keyboard Demo](./assets/demo.gif)
+An on-screen keyboard for typing in Indian languages in the browser. Pick a language, open the keyboard, and type with the mouse or by touch. No build step and no installation: it is plain HTML, CSS and JavaScript, built on [simple-keyboard](https://github.com/hodgef/simple-keyboard).
 
 ---
 
 ## ✨ Features
 
-- 🌍 Multi-language support  
-  - English (EN_IN)  
-  - Hindi (HI_IN)  
-  - Marathi (MR_IN)  
-  - Bengali (BN_IN)  
-  - Tamil (TA_IN)  
-  - Telugu (TE_IN)
-
-- 🔤 Shift & Caps Lock toggle  
-- ⌨ Hardware keyboard sync  
-- ↵ Functional Enter & Tab support  
-- 🖱 Draggable (grip-only drag area)  
-- 🧲 Viewport boundary restrictions  
-- 🎯 Centered space key  
-- ⚡ Dynamic state-based rendering  
-- 🧩 Modular and extendable design  
-- 📦 Zero external dependencies  
+- 🌍 **Five languages**: Hindi, Marathi, Telugu, Bengali, Tamil
+- 🔡 **Complete script coverage**: consonants, vowel signs, virama/halant for conjuncts (क्ष, స్త, தமிழ்), anusvara, visarga, chandrabindu, nukta and language-specific letters (ळ, ఱ, ড়, ৎ, ஃ, ஜ…)
+- ⇧ **Shift layer** with standalone vowels, common conjuncts, native and Western digits, and punctuation
+- ◌ **Readable vowel-sign keys**: combining marks are drawn on a dotted circle (◌ा)
+- ⌨ **Works alongside a physical keyboard**: text you type or paste stays in sync with the on-screen keyboard
+- 📍 **Inserts at the cursor** and keeps focus in the text field while you tap keys
+- 💾 **Remembers your language** between visits
+- 📱 **Responsive** layout for phones and tablets
+- ♿ **Accessible**: labelled controls, `aria-expanded`, a close button, and Escape to close
+- 🔤 **Proper fonts**: Noto Sans for every script, so text renders the same on every device
 
 ---
 
-## 📦 Installation
+## 🚀 Getting started
 
-### Install via NPM
+1. Clone the repository:
 
-    npm install indian-virtual-keyboard
+       git clone https://github.com/gaurav190901/Opensource-Multilingual-Virtual-Keyboard.git
 
----
+2. Open `index.html` in a browser.
 
-### Use via CDN
+That's all. The keyboard library and fonts load from CDNs, so you need an internet connection.
 
-    <script src="https://unpkg.com/indian-virtual-keyboard"></script>
+### Using it
 
----
-
-## 🚀 Usage
-
-### ES Module Usage
-
-    import VirtualKeyboard from "indian-virtual-keyboard";
-
-    VirtualKeyboard.attach("input, textarea", {
-      language: "EN_IN",
-      draggable: true,
-      hardwareSync: true
-    });
+- Choose a language from the **Language** menu.
+- Click ⌨️ to open the keyboard. Click it again, press ✕ or press **Escape** to close it.
+- Press **⇧** to switch between the letters layer and the vowels/digits/punctuation layer.
 
 ---
 
-### Script Tag Usage
+## 📁 Project structure
 
-    <link rel="stylesheet" href="keyboard.css">
-    <script src="keyboard.js"></script>
-
-    <input id="input" placeholder="Click me" />
-
-    <script>
-      VirtualKeyboard.attach("#input", {
-        language: "HI_IN"
-      });
-    </script>
-
----
-
-## ⚙️ Configuration Options
-
-| Option        | Type    | Default | Description |
-|--------------|---------|---------|-------------|
-| language     | String  | EN_IN   | Default keyboard language |
-| draggable    | Boolean | true    | Enable or disable drag functionality |
-| hardwareSync | Boolean | true    | Sync Shift and CapsLock with hardware keyboard |
-
----
-
-## 🧠 Architecture
-
-The keyboard is built around a modular design:
-
-- Dynamic layout engine
-- Language cycling system
-- State-driven rendering (shift, caps, activeInput)
-- Hardware event synchronization
-- Viewport drag constraint logic
-
-The keyboard re-renders dynamically when state changes.
-
----
-
-## 📁 Project Structure
-
-    indian-virtual-keyboard/
-    │
-    ├── src/
-    │   ├── keyboard.js
-    │   ├── keyboard.css
-    │
-    ├── dist/
-    │   └── keyboard.js
-    │
-    ├── assets/
-    │   └── demo.gif
-    │
-    ├── package.json
-    ├── README.md
+    ├── index.html    Page markup, font and library links
+    ├── keyboard.js   Language layouts and keyboard behaviour
+    ├── style.css     Page and keyboard styling
     ├── LICENSE
+    └── README.md
+
+---
+
+## 🧩 Adding a language
+
+Layouts live in the `layouts` object in [`keyboard.js`](keyboard.js). Each language has two layers, written as rows of space-separated keys:
+
+```js
+layouts.gu = {
+  default: [
+    "ા િ ી ુ ૂ ૃ ે ૈ ો ૌ ્",
+    "ક ખ ગ ઘ ઙ ચ છ જ ઝ ઞ",
+    // ...
+    "{shift} શ ષ સ હ ં ઃ ઁ {bksp}",
+    "{space}"
+  ],
+  shift: [
+    "અ આ ઇ ઈ ઉ ઊ ઋ એ ઐ ઓ ઔ",
+    // ...
+  ]
+};
+```
+
+Then:
+
+1. Add `<option value="gu">Gujarati</option>` to the language menu in `index.html`.
+2. Add `gu: "Gujarati"` to `LANG_NAMES` in `keyboard.js`.
+3. Add the script's Noto Sans font to the Google Fonts link in `index.html` and to `--indic-fonts` in `style.css`.
+
+Vowel signs get their dotted-circle label automatically.
 
 ---
 
 ## 🛣 Roadmap
 
-- [ ] Cursor position support
-- [ ] Arrow key navigation
-- [ ] Mobile touch drag support
-- [ ] Theme switcher
-- [ ] Custom layout API
-- [ ] TypeScript support
-- [ ] Minified production build
+- [ ] More languages (Gujarati, Kannada, Malayalam, Punjabi, Odia)
+- [ ] English layout
+- [ ] Physical-keyboard layout mapping (InScript)
+- [ ] Draggable keyboard panel
+- [ ] Dark theme
+- [ ] Offline use (bundle the library and fonts locally)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome.
+Contributions are welcome, especially layout fixes from native speakers.
 
-To contribute:
-
-1. Fork the repository  
-2. Create a new branch  
-3. Commit your changes  
-4. Open a Pull Request  
+1. Fork the repository
+2. Create a branch
+3. Commit your changes
+4. Open a pull request
 
 For major changes, please open an issue first.
 
 ---
 
-## 📦 Publishing to NPM
-
-    npm login
-    npm publish --access public
-
-Ensure:
-- Unique package name
-- Version updated
-- Logged into npm
-
----
-
 ## 📜 License
 
-MIT © 2026
-
-This project is licensed under the MIT License — you are free to use, modify, and distribute it.
-
----
-
-## ⭐ Support
-
-If you found this useful:
-
-- ⭐ Star the repository  
-- 🍴 Fork it  
-- 💡 Suggest improvements  
-- 🧩 Add new language layouts  
-
----
-
-Built with ❤️ using Vanilla JavaScript
+[MIT](LICENSE) © 2026 Gourav Gore

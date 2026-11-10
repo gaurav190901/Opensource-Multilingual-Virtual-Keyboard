@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multilingual On-Screen Keyboard</title>
+
+  <!-- Fonts with proper Indic script coverage -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&family=Noto+Sans+Devanagari:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&family=Noto+Sans+Bengali:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap">
+
+  <!-- simple-keyboard CSS (version pinned) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@3.8.192/build/css/index.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Multilingual On-Screen Keyboard</h2>
+
+  <div class="controls">
+    <label for="langSelect">Language</label>
+    <select id="langSelect">
+      <option value="hi">Hindi</option>
+      <option value="mr">Marathi</option>
+      <option value="te">Telugu</option>
+      <option value="bn">Bengali</option>
+      <option value="ta">Tamil</option>
+    </select>
+  </div>
+
+  <div class="input-wrapper">
+    <input id="textInput" placeholder="Type here..." lang="hi" autocomplete="off" />
+    <button id="kbBtn" type="button" aria-label="Show on-screen keyboard"
+            aria-expanded="false" aria-controls="keyboardContainer">⌨️</button>
+  </div>
+
+  <div id="keyboardContainer" role="region" aria-label="On-screen keyboard">
+    <div class="kb-header">
+      <span id="kbLangLabel">Hindi</span>
+      <button id="kbClose" type="button" aria-label="Close keyboard">✕</button>
+    </div>
+    <div class="simple-keyboard"></div>
+  </div>
+
+  <!-- simple-keyboard JS (version pinned) -->
+  <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@3.8.192/build/index.js"></script>
+
+  <!-- Custom JS -->
+  <script src="keyboard.js"></script>
+
+</body>
+</html>
