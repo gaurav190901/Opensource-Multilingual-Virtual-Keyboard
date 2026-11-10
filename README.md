@@ -9,6 +9,8 @@ A free, open-source on-screen keyboard for **English, Hindi, Marathi, Telugu, Be
 
 I built it because I needed an on-screen keyboard for Indian languages in another project and couldn't find a free one. It's MIT-licensed, so you can use it in personal and commercial projects.
 
+### 👉 [Try the live demo](https://gaurav190901.github.io/Opensource-Multilingual-Virtual-Keyboard/)
+
 ---
 
 ## ✨ Features
@@ -208,7 +210,9 @@ Override these CSS variables on `.mlk-panel`:
 
 ## 🖥 Demo
 
-Open [`index.html`](index.html) in a browser to try it locally.
+Try it online: **[https://gaurav190901.github.io/Opensource-Multilingual-Virtual-Keyboard/](https://gaurav190901.github.io/Opensource-Multilingual-Virtual-Keyboard/)**
+
+Or open [`index.html`](index.html) in a browser to try it locally.
 
 ---
 
