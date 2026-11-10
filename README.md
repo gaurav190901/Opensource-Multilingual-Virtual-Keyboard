@@ -4,13 +4,13 @@
 ![JavaScript](https://img.shields.io/badge/Vanilla-JS-yellow)
 ![PRs](https://img.shields.io/badge/PRs-Welcome-brightgreen)
 
-An on-screen keyboard for typing in Indian languages in the browser. Pick a language, open the keyboard, and type with the mouse or by touch. No build step and no installation: it is plain HTML, CSS and JavaScript, built on [simple-keyboard](https://github.com/hodgef/simple-keyboard).
+An on-screen keyboard for typing in English and Indian languages in the browser. Pick a language, open the keyboard, and type with the mouse or by touch. No build step and no installation: it is plain HTML, CSS and JavaScript, built on [simple-keyboard](https://github.com/hodgef/simple-keyboard).
 
 ---
 
 ## ✨ Features
 
-- 🌍 **Five languages**: Hindi, Marathi, Telugu, Bengali, Tamil
+- 🌍 **Six languages**: English, Hindi, Marathi, Telugu, Bengali, Tamil
 - 🔡 **Complete script coverage**: consonants, vowel signs, virama/halant for conjuncts (क्ष, స్త, தமிழ்), anusvara, visarga, chandrabindu, nukta and language-specific letters (ळ, ఱ, ড়, ৎ, ஃ, ஜ…)
 - ⇧ **Shift layer** with standalone vowels, common conjuncts, native and Western digits, and punctuation
 - ◌ **Readable vowel-sign keys**: combining marks are drawn on a dotted circle (◌ा)
@@ -39,7 +39,7 @@ That's all. The keyboard library and fonts load from CDNs, so you need an intern
 - Choose a language from the **Language** menu.
 - Click ⌨️ to open the keyboard. Click it again, press ✕ or press **Escape** to close it.
 - Drag the bar at the top of the keyboard (⠿) to move it. Double-click the bar to dock it at the bottom again.
-- Press **⇧** to switch between the letters layer and the vowels/digits/punctuation layer.
+- Press **⇧** to switch between the letters layer and the vowels/digits/punctuation layer. In English, ⇧ capitalises the next character only.
 
 ---
 
@@ -86,7 +86,6 @@ Vowel signs get their dotted-circle label automatically.
 ## 🛣 Roadmap
 
 - [ ] More languages (Gujarati, Kannada, Malayalam, Punjabi, Odia)
-- [ ] English layout
 - [ ] Physical-keyboard layout mapping (InScript)
 - [ ] Dark theme
 - [ ] Offline use (bundle the library and fonts locally)

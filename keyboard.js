@@ -32,6 +32,23 @@ function devanagari({ extraConsonants = "", extraVowels = "" } = {}) {
 }
 
 const layouts = {
+  en: {
+    default: [
+      "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
+      "q w e r t y u i o p [ ] \\",
+      "a s d f g h j k l ; '",
+      "{shift} z x c v b n m , . / {shift}",
+      "{space}"
+    ],
+    shift: [
+      "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
+      "Q W E R T Y U I O P { } |",
+      'A S D F G H J K L : "',
+      "{shift} Z X C V B N M < > ? {shift}",
+      "{space}"
+    ]
+  },
+
   hi: devanagari(),
 
   mr: devanagari({ extraConsonants: " ळ ऱ", extraVowels: " ॲ ऑ" }),
@@ -94,6 +111,7 @@ const layouts = {
 };
 
 const LANG_NAMES = {
+  en: "English",
   hi: "Hindi",
   mr: "Marathi",
   te: "Telugu",
@@ -158,7 +176,17 @@ const keyboard = new Keyboard({
   },
   onKeyPress: button => {
     // {bksp} and {space} are handled natively by simple-keyboard
-    if (button === "{shift}") toggleShift();
+    if (button === "{shift}") {
+      toggleShift();
+    } else if (
+      // English: Shift applies to one character, like a phone keyboard
+      langSelect.value === "en" &&
+      keyboard.options.layoutName === "shift" &&
+      !/^\{\w+\}$/.test(button) // ignore function keys like {space}
+    ) {
+      // Defer so the shifted character is inserted before switching back
+      setTimeout(toggleShift, 0);
+    }
   }
 });
 
