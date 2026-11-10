@@ -1,0 +1,52 @@
+{
+  "name": "multilingual-virtual-keyboard",
+  "version": "1.0.0",
+  "description": "Free on-screen keyboard for English, Hindi, Marathi, Telugu, Bengali and Tamil. Attach it to any input or textarea with one line.",
+  "keywords": [
+    "virtual-keyboard",
+    "on-screen-keyboard",
+    "keyboard",
+    "hindi",
+    "marathi",
+    "telugu",
+    "bengali",
+    "tamil",
+    "indic",
+    "devanagari",
+    "multilingual"
+  ],
+  "author": "Gourav Gore",
+  "license": "MIT",
+  "homepage": "https://github.com/gaurav190901/Opensource-Multilingual-Virtual-Keyboard#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaurav190901/Opensource-Multilingual-Virtual-Keyboard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gaurav190901/Opensource-Multilingual-Virtual-Keyboard/issues"
+  },
+  "main": "dist/multilingual-keyboard.cjs",
+  "module": "dist/multilingual-keyboard.mjs",
+  "types": "dist/multilingual-keyboard.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/multilingual-keyboard.d.ts",
+      "import": "./dist/multilingual-keyboard.mjs",
+      "require": "./dist/multilingual-keyboard.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "unpkg": "dist/multilingual-keyboard.min.js",
+  "jsdelivr": "dist/multilingual-keyboard.min.js",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "simple-keyboard": "3.8.192"
+  }
+}

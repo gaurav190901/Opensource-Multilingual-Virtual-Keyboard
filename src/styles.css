@@ -1,0 +1,126 @@
+/* Multilingual Virtual Keyboard: panel styles.
+   Override the --mlk-* variables on .mlk-panel to theme it. */
+
+.mlk-panel {
+  --mlk-bg: #ececec;
+  --mlk-key-bg: #ffffff;
+  --mlk-fn-key-bg: #e2e2e2;
+  --mlk-text: #222222;
+  --mlk-muted: #666666;
+  --mlk-accent: #cfe0ff;
+  --mlk-radius: 10px;
+  --mlk-z: 2147483000;
+  --mlk-width: 900px;
+  --mlk-font: "Noto Sans", "Noto Sans Devanagari", "Noto Sans Telugu",
+    "Noto Sans Bengali", "Noto Sans Tamil", Arial, sans-serif;
+
+  position: fixed;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: min(var(--mlk-width), calc(100vw - 16px));
+  box-sizing: border-box;
+  padding: 0 4px 4px;
+  background: var(--mlk-bg);
+  color: var(--mlk-text);
+  border-radius: var(--mlk-radius);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  z-index: var(--mlk-z);
+  font-family: var(--mlk-font);
+}
+
+.mlk-panel[hidden] {
+  display: none;
+}
+
+.mlk-panel *,
+.mlk-panel *::before,
+.mlk-panel *::after {
+  box-sizing: border-box;
+}
+
+.mlk-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px;
+  font-size: 14px;
+  color: var(--mlk-muted);
+  user-select: none;
+}
+
+.mlk-panel.mlk-draggable .mlk-header {
+  cursor: grab;
+  touch-action: none; /* let pointer events drive dragging on touch screens */
+}
+
+.mlk-panel.mlk-dragging .mlk-header {
+  cursor: grabbing;
+}
+
+.mlk-grip {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--mlk-muted);
+}
+
+.mlk-panel:not(.mlk-draggable) .mlk-grip {
+  display: none;
+}
+
+.mlk-lang {
+  font: inherit;
+  font-size: 14px;
+  padding: 2px 4px;
+  color: var(--mlk-text);
+  background: var(--mlk-key-bg);
+  border: 1px solid #bbb;
+  border-radius: 6px;
+}
+
+.mlk-lang[hidden] {
+  display: none;
+}
+
+.mlk-spacer {
+  flex: 1;
+}
+
+.mlk-close {
+  background: none;
+  border: none;
+  color: var(--mlk-text);
+  font-size: 18px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.mlk-panel .simple-keyboard.hg-theme-default {
+  padding: 0;
+  background: transparent;
+  font-family: var(--mlk-font);
+}
+
+.mlk-panel .hg-theme-default .hg-button {
+  font-size: 20px;
+  height: 44px;
+  color: var(--mlk-text);
+  background: var(--mlk-key-bg);
+}
+
+.mlk-panel .hg-theme-default .hg-button.hg-functionBtn {
+  font-size: 15px;
+  background: var(--mlk-fn-key-bg);
+}
+
+.mlk-panel .hg-theme-default .hg-button.mlk-shift-active {
+  background: var(--mlk-accent);
+}
+
+@media (max-width: 600px) {
+  .mlk-panel .hg-theme-default .hg-button {
+    font-size: 16px;
+    height: 40px;
+    padding: 2px;
+  }
+}
